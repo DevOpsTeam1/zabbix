@@ -29,7 +29,13 @@ mysql_service mysql_opts[:instance_name] do
   version '5.7'
   initial_root_password mysql_opts[:admin_password]
   mysqld_options(
-    :innodb_file_per_table => 'ON'
+    :innodb_file_per_table => 'ON',
+    :innodb_flush_method => 'O_DIRECT',
+    :innodb_log_file_size => '64M',
+    :query_cache_limit => '1M',
+    :join_buffer_size => '256k',
+    :read_buffer_size => '256k',
+    :read_rnd_buffer_size => '256k'
   )
   action [:create, :start]
 end
