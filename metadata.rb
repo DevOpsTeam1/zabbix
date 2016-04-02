@@ -4,7 +4,7 @@ maintainer_email 'you@example.com'
 license 'all_rights'
 description 'Installs/Configures zabbix'
 long_description 'Installs/Configures zabbix'
-version '0.2.0'
+version '0.2.1'
 
 supports 'centos', '~> 6.7'
 
