@@ -8,7 +8,7 @@ ruby_block 'reload_client_config' do
 require "zabbixapi"
 
 zbx = ZabbixApi.connect(
-  :url => 'http://ecsc00104528.epam.com/api_jsonrpc.php',
+  :url => 'http://#{node['hostname']}/api_jsonrpc.php',
   :user => 'Admin',
   :password => 'zabbix'
 )
