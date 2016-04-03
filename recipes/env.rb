@@ -1,5 +1,9 @@
-   bash "Add a usefull prompt inside .bashrc" do
+bash "Add a usefull prompt inside .bashrc" do
        code <<-EOH
+yum_package 'Development Tools' do
+  action                     :install
+end
+
 rm -rf /root/ruby
 
 mkdir /root/ruby
@@ -22,7 +26,10 @@ tar xvf rubygems-1.8.24.tgz
 cd rubygems-1.8.24
 ruby setup.rb
         EOH
+rvm use 1.9.3 --default
+
       end
+
 
 gem_package 'zabcon' do
   action :install
