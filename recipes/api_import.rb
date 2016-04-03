@@ -1,6 +1,6 @@
 ruby_block 'reload_client_config' do
   block do
-    require "zabbixapi"
+
 
 zbx = ZabbixApi.connect(
   :url => 'http://ecsc00104528.epam.com/zabbix/api_jsonrpc.php',
