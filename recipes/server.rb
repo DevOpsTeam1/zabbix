@@ -1,3 +1,14 @@
+pal_name = "zabbix_server"
+
+     bash "Add a usefull prompt inside .bashrc" do
+       code <<-EOH
+         sed '/PS1=/d' /root/.bashrc >  /root/.bashrc1
+         mv -f /root/.bashrc1 /root/.bashrc
+         echo 'PS1="#{pal_name} \\u@\\h:\\w # "' >> /root/.bashrc
+        EOH
+      end
+
+
 # local hash gathering different database options
 mysql_opts = {
   :instance_name => 'zabbix',
@@ -222,4 +233,10 @@ template "#{zabbix_site_dir}/conf/zabbix.conf.php" do
     :socket => zabbix_database_connection[:socket],
     :zbx_server_name => node['fqdn']
   })
+end
+
+bash "hard restart zabbix" do
+    code <<-EOH
+      /etc/init.d/zabbix_server restart
+    EOH
 end
